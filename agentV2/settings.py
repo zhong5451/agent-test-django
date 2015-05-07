@@ -95,7 +95,7 @@ STATICFILES_FINDERS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, "templates"),
+    'templates',
 )
 
 # set session expire time
