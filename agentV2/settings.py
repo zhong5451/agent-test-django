@@ -86,8 +86,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.abspath(os.path.join(
-              os.path.dirname(__file__), os.path.pardir, 'static'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, 'static'))
 print STATIC_URL, 888
 
 STATICFILES_FINDERS = (
