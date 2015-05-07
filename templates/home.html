@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul id="myTab" class="nav nav-tabs">
+       <li class="active"><a href="#tab1" data-toggle="tab">云防抗D中心</a></li>
+        <li><a href="#tab2" data-toggle="tab">IP防御中心</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <iframe id="iframe_10_18_103_31_8888" style="width:730px;border:0px;display:none;" frameborder="0" scrolling="no"  cloudval="mark:baiyuV3;style:#4B79CE,#8FAFE7,#ABC4F1,#00467C,#39BA00,#50CE18,#FF5A00,#DDE7F7,#CDECD1,#FFE9B8;protocol:http;cloudSubDir:/static"></iframe>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <iframe id="iframe_10_18_103_14_8888" style="width:730px;border:0px;display:none;" frameborder="0" scrolling="no"  cloudval="mark:baiyuV3;style:#4B79CE,#8FAFE7,#ABC4F1,#00467C,#39BA00,#50CE18,#FF5A00,#DDE7F7,#CDECD1,#FFE9B8;protocol:http;cloudSubDir:/static"></iframe>
+        </div>
+      </div>
+    </div>
+  </body>
+<script type="text/javascript" src="/static/admin/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/static/admin/js/bootstrap-tab.js"></script>
+<script type="text/javascript">
+$(function (){
+    $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
+  $('[href='+location.hash+']').tab('show');
+})
+</script>
+<script type="text/javascript" src="http://10.18.103.31:8888/static/user/js/modules/cloud/cloud.js"></script>
+<script type="text/javascript" src="http://10.18.103.14:8888/static/user/js/modules/cloud/cloud.js"></script>
+</html>
