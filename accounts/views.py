@@ -14,7 +14,6 @@ import urllib2
 
 
 def user_login(request):
-    print 2222
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -28,7 +27,6 @@ def user_login(request):
         else:
             return json_response({'msg': u'Username or Password is error.'})
     else:
-        print 1111
         return render(request, 'login.html', {})
 
 
