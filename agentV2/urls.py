@@ -10,6 +10,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^', include('accounts.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-)
+                       url(r'^', include('accounts.urls')),
+                       url(r'^pay', include('pay.urls')),
+                       url(r'^admin/', include(admin.site.urls)),
+                       )
