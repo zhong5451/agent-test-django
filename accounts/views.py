@@ -17,15 +17,21 @@ def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        print request.POST
         user = authenticate(username=username, password=password)
+        print user
         if user is not None:
+            print user.is_active
             if user.is_active:
                 login(request, user)
+                print reverse('home')
                 return redirect(reverse('home'))
             else:
-                return json_response({'msg': u'The user is not active.'})
+                return render(request, 'login.html',
+                              {'error_msg': u'The user is not active.'})
         else:
-            return json_response({'msg': u'Username or Password is error.'})
+            return render(request, 'login.html',
+                          {'error_msg': u'Username or Password is error.'})
     else:
         return render(request, 'login.html', {})
 
