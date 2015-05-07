@@ -14,6 +14,7 @@ import urllib2
 
 
 def user_login(request):
+    print 2222
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
