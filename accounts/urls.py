@@ -7,13 +7,9 @@ Created on 2015-05-05
 
 from django.conf.urls import patterns, include, url
 
-from django.contrib import admin
-admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'agentV2.views.home', name='home'),
-    url(r'^/', include('accounts.urls')),
-
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^/login/$', 'user_login', name='login'),
+    url(r'^/logout/$', 'user_logout', name='logout'),
+    url(r'^/$', 'home', name='home'),,
 )
