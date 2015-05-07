@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-import sys
-sys.path.insert(0, BASE_DIR)
+# import sys
+# sys.path.insert(0, BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -86,7 +86,8 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, 'static'))
+STATIC_ROOT = os.path.abspath(os.path.join(
+              os.path.dirname('settings.py'), os.path.pardir, 'static'))
 print STATIC_URL, 888
 
 STATICFILES_FINDERS = (
