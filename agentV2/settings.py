@@ -13,6 +13,8 @@ import os
 PROJECT_DIR = os.path.dirname(__file__)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import sys
+sys.path.insert(0, PROJECT_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -92,7 +94,7 @@ STATICFILES_FINDERS = (
 )
 
 TEMPLATE_DIRS = (
-    'templates',
+    os.path.join(PROJECT_DIR, "templates"),
 )
 
 # set session expire time

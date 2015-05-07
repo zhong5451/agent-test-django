@@ -27,6 +27,7 @@ def user_login(request):
         else:
             return json_response({'msg': u'Username or Password is error.'})
     else:
+        print 1111
         return render(request, 'login.html', {})
 
 
