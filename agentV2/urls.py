@@ -12,7 +12,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'agentV2.views.home', name='home'),
-    url(r'^/', include('accounts.urls')),
+    url(r'^/', include('accounts.urls'),
 
     url(r'^admin/', include(admin.site.urls)),
 )
