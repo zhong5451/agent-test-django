@@ -6,7 +6,7 @@ Created on 2015-05-05
 '''
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
-from settings import STATIC_URL, STATIC_ROOT
+from settings import STATIC_URL
 
 from django.contrib import admin
 admin.autodiscover()

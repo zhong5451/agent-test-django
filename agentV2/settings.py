@@ -86,9 +86,8 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.abspath(os.path.join(
-              os.path.dirname('settings.py'), os.path.pardir, 'static'))
-print STATIC_URL, 888
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+print STATIC_ROOT, 888
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
