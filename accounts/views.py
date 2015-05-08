@@ -48,7 +48,7 @@ def user_logout(request):
 @login_required
 def home(request):
     url = 'http://10.18.103.31:8888/api/home/agent-user-login/'
-    params = "uid=%s&uname=%s" % (request.user.username, request.user.id)
+    params = "email=%s&phone=%s&uid=%s&uname=%s" % ('test@test.com', 13312341234, request.user.username, request.user.id)
     private_key = settings.PRIVATE_KEY
     sign = hashlib.md5('%s%s' % (params, private_key))
     signed_request = "%s.%s" % (sign, encrypt(params, private_key))
