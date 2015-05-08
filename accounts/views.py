@@ -9,8 +9,9 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-import urllib
-import urllib2
+import requests
+# import urllib
+# import urllib2
 
 
 def user_login(request):
@@ -43,15 +44,13 @@ def user_logout(request):
 
 @login_required
 def home(request):
-    url = 'http://10.18.103.31:8888/api/home/agent-user-login'
+    url = 'http://10.18.103.31:8888/api/home/agent-user-login/'
     params = {'uname': request.user.username, 'uid': request.user.id}
-    print params
-    params = urllib.urlencode(params)
-    print params
-    req = urllib2.Request(url, params)
-    print req
-    # urllib2.urlopen(req)
-    response = urllib2.urlopen(req)
-    result = response.read()
-    print result
+    # params = urllib.urlencode(params)
+    # req = urllib2.Request(url, params)
+    # # urllib2.urlopen(req)
+    # response = urllib2.urlopen(req)
+    # result = response.read()
+    r = requests.post(url, data=params)
+    print r.text()
     return render(request, 'home.html', {})
