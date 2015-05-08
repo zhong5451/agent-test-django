@@ -45,8 +45,11 @@ def user_logout(request):
 def home(request):
     url = 'http://10.18.103.31:8888/api/home/agent-user-login'
     params = {'uname': request.user.username, 'uid': request.user.id}
+    print params
     params = urllib.urlencode(params)
+    print params
     req = urllib2.Request(url, params)
+    print req
     # urllib2.urlopen(req)
     response = urllib2.urlopen(req)
     result = response.read()
