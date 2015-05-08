@@ -42,6 +42,6 @@ def user_logout(request):
     return redirect(reverse('login'))
 
 
-@login_required(login_url=settings.LOGIN_URL)
+@login_required
 def home(request):
     return render(request, 'home.html', {})
