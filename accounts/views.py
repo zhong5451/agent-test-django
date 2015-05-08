@@ -52,5 +52,5 @@ def home(request):
     # response = urllib2.urlopen(req)
     # result = response.read()
     r = requests.post(url, data=params)
-    print r.text()
+    print r.text
     return render(request, 'home.html', {})
