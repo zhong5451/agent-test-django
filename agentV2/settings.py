@@ -101,7 +101,7 @@ TEMPLATE_DIRS = (
     'templates',
 )
 
-LOGING_URL = '/login'
+LOGING_URL = '/login/'
 
 # set session expire time
 SESSION_SAVE_EVERY_REQUEST = True

@@ -5,6 +5,7 @@ Created on 2015-05-05
 @author: xiaowei
 '''
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -41,6 +42,6 @@ def user_logout(request):
     return redirect(reverse('login'))
 
 
-@login_required
+@login_required(login_url=settings.LOGIN_URL)
 def home(request):
     return render(request, 'home.html', {})
