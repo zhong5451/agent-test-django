@@ -76,7 +76,6 @@ USE_L10N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
@@ -101,6 +100,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 TEMPLATE_DIRS = (
     'templates',
 )
+
+LOGING_URL = '/login'
 
 # set session expire time
 SESSION_SAVE_EVERY_REQUEST = True
