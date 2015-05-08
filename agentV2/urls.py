@@ -6,7 +6,7 @@ Created on 2015-05-05
 '''
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
-from settings import STATIC_URL, STATIC_ROOT
+from settings import STATIC_URL, STATICFILES_DIRS
 
 from django.contrib import admin
 admin.autodiscover()
@@ -16,5 +16,5 @@ urlpatterns = patterns('',
                        url(r'^pay', include('pay.urls')),
                        url(r'^admin/', include(admin.site.urls)),
                        )
-
-urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
+print STATIC_URL, STATICFILES_DIRS
+urlpatterns += static(STATIC_URL, document_root=STATICFILES_DIRS[0])
