@@ -5,10 +5,13 @@ Created on 2015-05-05
 @author: xiaowei
 '''
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from utils.helper import encrypt
+import hashlib
 import requests
 # import urllib
 # import urllib2
@@ -45,12 +48,16 @@ def user_logout(request):
 @login_required
 def home(request):
     url = 'http://10.18.103.31:8888/api/home/agent-user-login/'
-    params = {'uname': request.user.username, 'uid': request.user.id}
+    params = "uid=%s&uname=%s" % (request.user.username, request.user.id)
+    private_key = settings.private_key
+    sign = hashlib.md5('%s%s' % (params, private_key))
+    signed_request = "%s.%s" % (sign, encrypt(params, private_key))
+    data = {'signed_request': signed_request}
     # params = urllib.urlencode(params)
     # req = urllib2.Request(url, params)
     # # urllib2.urlopen(req)
     # response = urllib2.urlopen(req)
     # result = response.read()
-    r = requests.post(url, data=params)
+    r = requests.post(url, data=data)
     print r.text
     return render(request, 'home.html', {})
