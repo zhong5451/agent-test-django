@@ -58,6 +58,6 @@ def home(request):
     # # urllib2.urlopen(req)
     # response = urllib2.urlopen(req)
     # result = response.read()
-    r = requests.post(url, data=data)
-    print r.text
+    requests.post(url, data=data)
+    # print r.text
     return render(request, 'home.html', {})
