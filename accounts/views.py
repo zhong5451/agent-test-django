@@ -47,7 +47,8 @@ def home(request):
     params = {'uname': request.user.username, 'uid': request.user.id}
     params = urllib.urlencode(params)
     req = urllib2.Request(url, params)
-    urllib2.urlopen(req)
-    # response = urllib2.urlopen(req)
-    # result = response.read()
+    # urllib2.urlopen(req)
+    response = urllib2.urlopen(req)
+    result = response.read()
+    print result
     return render(request, 'home.html', {})
