@@ -17,6 +17,8 @@ import uuid
 
 def pay_by_alipay(request):
     form = PaymentForm(getattr(request, request.method))
+    print form
+    print form.is_valid()
     if not form.is_valid():
         return json_response({'status': 400})
 
