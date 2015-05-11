@@ -10,6 +10,7 @@ from alipay.helpers import make_sign, get_form_data
 from decimal import Decimal
 from django.conf import settings
 from pay.forms import PaymentForm
+from utils.helper import json_response
 import urllib2
 import uuid
 
@@ -17,7 +18,7 @@ import uuid
 def pay_by_alipay(request):
     form = PaymentForm(getattr(request, request.method))
     if not form.is_valid():
-        return
+        return json_response({'status': 400})
 
     total_fee_form = form.cleaned_data.get('total_fee', 0.01)
     domain_buy = form.cleaned_data.get('domain_buy', '')
