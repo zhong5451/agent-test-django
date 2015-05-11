@@ -13,7 +13,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
                        url(r'^', include('accounts.urls')),
-                       url(r'^pay', include('pay.urls')),
+                       url(r'^alipay', include('pay.urls')),
                        url(r'^admin/', include(admin.site.urls)),
                        )
 
