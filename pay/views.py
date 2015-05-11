@@ -28,7 +28,7 @@ def pay_by_alipay(request):
     # service_info = Service_rank_info.objects.all()
     # service_dict = {service.service_id: service for service in service_info}
     # sum total fee is correct?
-    pay_url = 'http://%s' % settings.DOMAIN
+    pay_url = settings.DOMAIN
     out_trade_no = uuid.uuid1().hex
     total_payments = Decimal(0)
     description_goods = u''
@@ -62,7 +62,7 @@ def pay_by_alipay(request):
     # alipay form
     alipay_dict = {
             "_input_charset": 'utf-8',
-            'notify_url': '%s/api/alipay/return_async/' % str(pay_url),
+            'notify_url': '%s/alipay/return_async/' % str(pay_url),
             #'return_url': '%s/api/alipay/return/' % pay_url,
             'sign_type': 'MD5',
             #'sign': '',
