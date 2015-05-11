@@ -42,7 +42,7 @@ def pay_by_alipay(request):
         unit_price = int(100)
         quantity = int(3)
     except ValueError:
-        return
+        return json_response({'status': 400})
 
     subject = u"青松抗D防御套餐"
     detail_body = description_goods
@@ -110,4 +110,4 @@ def pay_by_alipay(request):
     return_data = {}
     return_data['alipay_url'] = request_url
     return_data.update()
-    return return_data
+    return json_response(return_data)
