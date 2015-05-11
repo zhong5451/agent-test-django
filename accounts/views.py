@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from utils.helper import encrypt
+from utils.helper import encrypt, get_clientip
 import hashlib
 import requests
 # import urllib
@@ -48,7 +48,9 @@ def user_logout(request):
 @login_required
 def home(request):
     url = 'http://10.18.103.31:8888/api/home/agent-user-login/'
-    params = "email=%s&phone=%s&uid=%s&uname=%s" % ('test@test.com', 13312341234, request.user.id, request.user.username)
+    client_ip = get_clientip(request)
+    params = "clientip=%s&email=%s&phone=%s&uid=%s&uname=%s" % (
+        'test@test.com', 13312341234, request.user.id, request.user.username)
     private_key = settings.PRIVATE_KEY
     sign = hashlib.md5('%s%s' % (params, private_key)).hexdigest()
     signed_request = "%s.%s" % (sign, encrypt(params, private_key))
@@ -59,12 +61,6 @@ def home(request):
     # response = urllib2.urlopen(req)
     # result = response.read()
     requests.post(url, data=data)
-    if request.META.has_key('HTTP_X_FORWARDED_FOR'):
-        client_ip = request.META['HTTP_X_FORWARDED_FOR']
-    else:
-        client_ip = request.META['REMOTE_ADDR']
-    client_ips = client_ip.split(',')
-    client_ip = client_ips[0]
     print client_ip
     # print r.text
     return render(request, 'home.html', {})

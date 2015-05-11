@@ -37,3 +37,13 @@ def encrypt(text, private_key):
     # 因为AES加密时候得到的字符串不一定是ascii字符集的，输出到终端或者保存时候可能存在问题
     # 所以这里统一把加密后的字符串转化为16进制字符串
     return b2a_hex(ciphertext)
+
+
+def get_clientip(request):
+    if request.META.has_key('HTTP_X_FORWARDED_FOR'):
+        client_ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        client_ip = request.META['REMOTE_ADDR']
+    client_ips = client_ip.split(',')
+    client_ip = client_ips[0]
+    return client_ip
