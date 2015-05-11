@@ -59,5 +59,12 @@ def home(request):
     # response = urllib2.urlopen(req)
     # result = response.read()
     requests.post(url, data=data)
+    if request.META.has_key('HTTP_X_FORWARDED_FOR'):
+        client_ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        client_ip = request.META['REMOTE_ADDR']
+    client_ips = client_ip.split(',')
+    client_ip = client_ips[0]
+    print client_ip
     # print r.text
     return render(request, 'home.html', {})
