@@ -9,7 +9,7 @@ from alipay.create_direct_pay_by_user.forms import AliPayDirectPayForm
 from alipay.helpers import make_sign, get_form_data
 from decimal import Decimal
 from django.conf import settings
-from forms import PaymentForm
+from pay.forms import PaymentForm
 import urllib2
 import uuid
 
