@@ -10,6 +10,7 @@ from alipay.helpers import make_sign, get_form_data
 from django.conf import settings
 from pay.forms import PaymentForm
 from utils.helper import json_response
+import requests
 import urllib2
 
 
@@ -28,11 +29,13 @@ def pay_by_alipay(request):
     subject = form.cleaned_data.get('subject', '')
     body = form.cleaned_data.get('body', '')
 
+
     # alipay form
     alipay_dict = {
             "_input_charset": 'utf-8',
-            'notify_url': '%s/alipay/nofify_async/' % settings.DOMAIN,
-            # 'return_url': '%s/api/alipay/return/' % settings.DOMAIN,
+            'notify_url': '%s/alipay/nofify-async/' % settings.DOMAIN,
+            'return_url': '%s/alipay/return/?out_trade_no=%s' % (settings.DOMAIN,
+            	                                                 out_trade_no),
             'sign_type': 'MD5',
             # 'sign': '',
             # 'error_notify_url': '',
@@ -81,3 +84,16 @@ def pay_by_alipay(request):
     return_data['alipay_url'] = request_url
     return_data.update()
     return json_response(return_data)
+
+
+def nofify_async(request):
+	pass
+
+
+def return_func(request):
+    url = 'http://10.18.103.31:8888/api/alipay/open/'
+    out_trade_no = request.GET.get('out_trade_no')
+    print out_trade_no
+    r = requests.get(url, params={'out_trade_no': out_trade_no})
+    print r.text
+    return json_response(r.text)
