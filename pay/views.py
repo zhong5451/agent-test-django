@@ -80,6 +80,7 @@ def pay_by_alipay(request):
         except AttributeError:
             pass
         request_url += "&%s=%s" % (key, v)
+    print request_url
     return_data = {}
     return_data['alipay_url'] = request_url
     return_data.update()
