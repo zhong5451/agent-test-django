@@ -56,11 +56,6 @@ def home(request):
     sign = hashlib.md5('%s%s' % (params, private_key)).hexdigest()
     signed_request = "%s.%s" % (sign, encrypt(params, private_key))
     data = {'signed_request': signed_request}
-    # params = urllib.urlencode(params)
-    # req = urllib2.Request(url, params)
-    # # urllib2.urlopen(req)
-    # response = urllib2.urlopen(req)
-    # result = response.read()
     requests.post(url, data=data)
     print client_ip
     # print r.text

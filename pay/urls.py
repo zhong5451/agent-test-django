@@ -5,9 +5,10 @@ Created on 2015-05-05
 @author: xiaowei
 '''
 
-from accounts import views
 from django.conf.urls import patterns, url
 
 
-urlpatterns = patterns(views,
+urlpatterns = patterns('pay.views',
+    url(r'^pay/', 'pay_by_alipay'),
+
 )
