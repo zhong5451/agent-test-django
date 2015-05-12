@@ -110,6 +110,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 PRIVATE_KEY = ''
 
+IFRAME_CLOUD_URL = ''
+
 try:
     from local_settings import *
 except ImportError:
