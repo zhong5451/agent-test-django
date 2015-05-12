@@ -59,4 +59,6 @@ def home(request):
     r = requests.post(url, data=data)
     print client_ip
     print r.text
-    return render(request, 'home.html', {})
+    response = render(request, 'home.html', {})
+    response.set_cookie(key='pk', value=r.text)
+    return response
