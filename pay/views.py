@@ -44,6 +44,7 @@ def pay_by_alipay(request):
     out_trade_no = params.get_param('out_trade_no')[0]
     subject = params.get_param('subject')[0]
     body = params.get_param('body')[0]
+    print body
 
 
     # alipay form
