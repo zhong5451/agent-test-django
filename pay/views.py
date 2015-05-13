@@ -16,19 +16,32 @@ import urllib2
 
 
 def pay_by_alipay(request):
-    form = PaymentForm(getattr(request, request.method))
-    print form
-    print form.is_valid()
-    if not form.is_valid():
-        return json_response({'status': 400})
+    data = {'status': 400}
+    request_params = getattr(request, request.method)
+    signed_request = request_params.get('signed_request', '')
+    signed_request = signed_request.split('.')
+    if len(signed_request) == 2:
+        sign, pay_data = signed_request[0], signed_request[1]
+    else:
+        return json_response(data)
+    pay_data = decrypt(pay_data, settings.PRIVATE_KEY)
 
-    total_fee = form.cleaned_data.get('total_fee', 0.01)
-    domain_buy = form.cleaned_data.get('domain_buy', '')
-    service = form.cleaned_data.get('service', '')
-    user_id = form.cleaned_data.get('user_id', '')
-    out_trade_no = form.cleaned_data.get('out_trade_no', '')
-    subject = form.cleaned_data.get('subject', '')
-    body = form.cleaned_data.get('body', '')
+    pay_data = pay_data.split('&')
+    pay_data.sort()
+    pay_data = '&'.join(pay_data)
+
+    sign_cal = hashlib.md5('%s%s' % (pay_data, private_key)).hexdigest()
+    if sign_cal != sign:
+        return json_response(data)
+    params = Param('?%s' % pay_data)
+
+    total_fee = params.get('total_fee', 0.01)
+    domain_buy = params.get('domain_buy', '')
+    service = params.get('service', '')
+    user_id = params.get('user_id', '')
+    out_trade_no = params.get('out_trade_no', '')
+    subject = params.get('subject', '')
+    body = params.get('body', '')
 
 
     # alipay form
