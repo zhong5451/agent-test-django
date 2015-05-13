@@ -32,6 +32,7 @@ def pay_by_alipay(request):
     pay_data = '&'.join(pay_data)
 
     sign_cal = hashlib.md5('%s%s' % (pay_data, settings.PRIVATE_KEY)).hexdigest()
+    print sign, sign_cal
     if sign_cal != sign:
         return json_response(data)
     params = Param('?%s' % pay_data)
