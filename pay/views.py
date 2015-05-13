@@ -26,6 +26,7 @@ def pay_by_alipay(request):
     else:
         return json_response(data)
     pay_data = decrypt(pay_data, settings.PRIVATE_KEY)
+    print pay_data
 
     pay_data = pay_data.split('&')
     pay_data.sort()
@@ -36,6 +37,7 @@ def pay_by_alipay(request):
     #if sign_cal != sign:
     #    return json_response(data)
     params = Param('?%s' % pay_data)
+    print parsms
 
     total_fee = params.get_param('total_fee')[0]
     domain_buy = params.get_param('domain_buy')[0]
