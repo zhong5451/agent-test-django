@@ -18,6 +18,17 @@ def json_response(data, error=False, **kwargs):
     return response
 
 
+class Param(object):
+    def __init__(self, url):
+        self.url = '?%s' % url
+
+    def get_param(self, key):
+        parsed = urlparse.urlparse(self.url)
+        params = urlparse.parse_qs(parsed.query)
+        param = params.get(key, [''])
+        return param
+
+
 def decrypt(text, private_key):
     """
     decrypt the Request_Key.
