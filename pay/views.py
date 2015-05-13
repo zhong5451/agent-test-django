@@ -99,7 +99,7 @@ def pay_by_alipay(request):
         request_url += "&%s=%s" % (key, v)
     print request_url
     return_data = {}
-    return_data['alipay_url'] = request_url
+    return_data['pay_url'] = request_url
     return_data.update({'return_code': 0})
     return json_response(return_data)
 
