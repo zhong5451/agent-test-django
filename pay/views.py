@@ -37,13 +37,13 @@ def pay_by_alipay(request):
     #    return json_response(data)
     params = Param('?%s' % pay_data)
 
-    total_fee = params.get_param('total_fee', 0.01)
-    domain_buy = params.get_param('domain_buy', '')
-    service = params.get_param('service', '')
-    user_id = params.get_param('user_id', '')
-    out_trade_no = params.get_param('out_trade_no', '')
-    subject = params.get_param('subject', '')
-    body = params.get_param('body', '')
+    total_fee = params.get_param('total_fee')[0]
+    domain_buy = params.get_param('domain_buy')[0]
+    service = params.get_param('service')[0]
+    user_id = params.get_param('user_id')[0]
+    out_trade_no = params.get_param('out_trade_no')[0]
+    subject = params.get_param('subject')[0]
+    body = params.get_param('body')[0]
 
 
     # alipay form
