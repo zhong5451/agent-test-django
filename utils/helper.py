@@ -18,6 +18,18 @@ def json_response(data, error=False, **kwargs):
     return response
 
 
+def decrypt(text, private_key):
+    """
+    decrypt the Request_Key.
+    用AES算法根据私钥在MODE_ECB模式下进行解密。因为加密后是以十六进制传输，
+    所以要先按十六进制解码，再去掉以'\0'补全的数据（在AES加密时必须是十六位
+    或者十六位的倍数长加密，不足的以'\0'补全）
+    """
+    cryptor = AES.new(private_key, AES.MODE_ECB)
+    plain_text = cryptor.decrypt(text.decode('hex'))
+    return plain_text.rstrip('\0')
+
+
 def encrypt(text, private_key):
     # cryptor = AES.new(self.key, self.mode, b'0000000000000001')
     cryptor = AES.new(private_key, AES.MODE_ECB)
