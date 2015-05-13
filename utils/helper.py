@@ -9,6 +9,7 @@ from Crypto.Cipher import AES
 from binascii import b2a_hex, a2b_hex
 from django.http import HttpResponse
 import simplejson as json
+import urlparse
 
 
 def json_response(data, error=False, **kwargs):
