@@ -112,6 +112,14 @@ PRIVATE_KEY = ''
 
 IFRAME_CLOUD_URL = ''
 
+DOMAIN = 'http://www.qssec.com'
+
+# alipay
+ALIPAY_PARTNER = ''  # alipay return number
+ALIPAY_PRIVATE_KEY = ''  # alipay return key
+ALIPAY_SELLER_ID = ''
+ALIPAY_SELLER_EMAIL = ''
+
 try:
     from local_settings import *
 except ImportError:

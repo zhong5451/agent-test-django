@@ -48,6 +48,7 @@ def user_logout(request):
 @login_required
 def home(request):
     url = 'http://10.18.103.31:8888/api/home/agent-user-login/'
+    url = '%s/api/home/agent-user-login/' % setting.IFRAME_CLOUD_URL
     client_ip = get_clientip(request)
     params = "clientip=%s&email=%s&phone=%s&uid=%s&uname=%s" % (
              client_ip, 'test@test.com', 13312341234,

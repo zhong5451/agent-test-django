@@ -8,6 +8,7 @@ Created on 2015-05-05
 from alipay.create_direct_pay_by_user.forms import AliPayDirectPayForm
 from alipay.helpers import make_sign, get_form_data
 from django.conf import settings
+from django.shortcuts import render
 from pay.forms import PaymentForm
 from utils.helper import json_response
 import requests
@@ -92,9 +93,18 @@ def nofify_async(request):
 
 
 def return_func(request):
-    url = 'http://10.18.103.31:8888/api/alipay/open/'
-    out_trade_no = request.GET.get('out_trade_no')
+    out_trade_no = request.GET.get('out_trade_no', '')
     print out_trade_no
-    r = requests.get(url, params={'out_trade_no': out_trade_no})
+    url = 'http://10.18.103.31:8888/api/alipay/open/'
+    url = '%s/api/alipay/open/' % settings.IFRAME_CLOUD_URL
+    params = "out_trade_no=%s" % ( 
+             out_trade_no)
+    private_key = settings.PRIVATE_KEY
+    sign = hashlib.md5('%s%s' % (params, private_key)).hexdigest()
+    signed_request = "%s.%s" % (sign, encrypt(params, private_key))
+    data = {'signed_request': signed_request}
+    r = requests.post(url, data=data)
+    print client_ip
     print r.text
-    return json_response(r.text)
+    res = r.json()
+    return render(request, 'pay.html', {'result': res.status})
