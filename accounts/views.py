@@ -64,3 +64,8 @@ def home(request):
     response = render(request, 'home.html', {})
     response.set_cookie(key='pk', value=res.get('pk', ''))
     return response
+
+
+def show_qsproxy(request):
+    return render(request, 'qsProxy.html', {})
+

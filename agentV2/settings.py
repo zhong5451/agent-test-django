@@ -110,7 +110,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 PRIVATE_KEY = ''
 
-IFRAME_CLOUD_URL = ''
+IFRAME_CLOUD_URL = 'http://10.18.103.31:8888'
 
 DOMAIN = 'http://www.qssec.com'
 
