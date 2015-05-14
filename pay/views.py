@@ -116,8 +116,8 @@ def return_func(request):
     print out_trade_no
     url = 'http://10.18.103.31:8888/api/alipay/open/'
     url = '%s/api/alipay/open/' % settings.IFRAME_CLOUD_URL
-    params = "pk=%s&out_trade_no=%s" % ( 
-             pk, out_trade_no)
+    params = "out_trade_no=%s&pk=%s" % ( 
+             out_trade_no, pk)
     private_key = settings.PRIVATE_KEY
     sign = hashlib.md5('%s%s' % (params, private_key)).hexdigest()
     signed_request = "%s.%s" % (sign, encrypt(params, private_key))
