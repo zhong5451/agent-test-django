@@ -59,7 +59,7 @@ def home(request):
     data = {'signed_request': signed_request}
     r = requests.post(url, data=data)
     print client_ip
-    print r.text
+    # print r.text
     res = r.json()
     response = render(request, 'home.html', {})
     response.set_cookie(key='pk', value=res.get('pk', ''))
