@@ -103,7 +103,7 @@ def pay_by_alipay(request):
     data['pay_url'] = request_url
     data['status'] = 200
     print data
-    return json_response(return_data)
+    return json_response(data)
 
 
 def nofify_async(request):
