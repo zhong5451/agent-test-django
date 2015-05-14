@@ -108,7 +108,6 @@ def pay_by_alipay(request):
 
 def nofify_async(request):
     print getattr(request, request.method)
-	pass
 
 
 def return_func(request):
