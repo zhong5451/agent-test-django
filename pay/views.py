@@ -102,6 +102,7 @@ def pay_by_alipay(request):
     print request_url
     data['pay_url'] = request_url
     data['status'] = 200
+    print data
     return json_response(return_data)
 
 
