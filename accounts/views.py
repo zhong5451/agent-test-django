@@ -18,6 +18,7 @@ import requests
 
 
 def user_login(request):
+    print 1111122222
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
