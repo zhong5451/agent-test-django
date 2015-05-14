@@ -125,4 +125,4 @@ def return_func(request):
     r = requests.post(url, data=data)
     print r.text
     res = r.json()
-    return render(request, 'pay.html', {'result': res.status})
+    return render(request, 'pay.html', {'result': res.get('status', 400)})
