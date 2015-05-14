@@ -111,12 +111,13 @@ def nofify_async(request):
 
 
 def return_func(request):
+    pk = request.COOKIES.get('pk', )
     out_trade_no = request.GET.get('out_trade_no', '')
     print out_trade_no
     url = 'http://10.18.103.31:8888/api/alipay/open/'
     url = '%s/api/alipay/open/' % settings.IFRAME_CLOUD_URL
-    params = "out_trade_no=%s" % ( 
-             out_trade_no)
+    params = "pk=%s&out_trade_no=%s" % ( 
+             pk, out_trade_no)
     private_key = settings.PRIVATE_KEY
     sign = hashlib.md5('%s%s' % (params, private_key)).hexdigest()
     signed_request = "%s.%s" % (sign, encrypt(params, private_key))
