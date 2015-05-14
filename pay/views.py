@@ -122,7 +122,6 @@ def return_func(request):
     signed_request = "%s.%s" % (sign, encrypt(params, private_key))
     data = {'signed_request': signed_request}
     r = requests.post(url, data=data)
-    print client_ip
     print r.text
     res = r.json()
     return render(request, 'pay.html', {'result': res.status})
