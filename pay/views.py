@@ -9,6 +9,7 @@ from alipay.create_direct_pay_by_user.forms import AliPayDirectPayForm
 from alipay.helpers import make_sign, get_form_data
 from django.conf import settings
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from pay.forms import PaymentForm
 from utils.helper import json_response, decrypt , Param, encrypt
 import hashlib
@@ -106,6 +107,7 @@ def pay_by_alipay(request):
     return json_response(data)
 
 
+@csrf_exempt
 def nofify_async(request):
     print getattr(request, request.method)
 
