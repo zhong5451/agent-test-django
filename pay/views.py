@@ -110,6 +110,7 @@ def pay_by_alipay(request):
 @csrf_exempt
 def nofify_async(request):
     print getattr(request, request.method)
+    return json_response({"msg": u"测试notify"})
 
 
 def return_func(request):
