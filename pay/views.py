@@ -53,7 +53,7 @@ def pay_by_alipay(request):
     # alipay form
     alipay_dict = {
             "_input_charset": 'utf-8',
-            'notify_url': '%s/alipay/nofify-async/' % settings.DOMAIN,
+            'notify_url': '%s/alipay/nofify-async/?out_trade_no=123456' % settings.DOMAIN,
             'return_url': '%s/alipay/return/?out_trade_no=%s' % (settings.DOMAIN,
             	                                                 out_trade_no),
             'sign_type': 'MD5',
@@ -109,6 +109,7 @@ def pay_by_alipay(request):
 
 @csrf_exempt
 def nofify_async(request):
+    print request.GET
     print getattr(request, request.method)
     return json_response({"msg": u"测试notify"})
 
