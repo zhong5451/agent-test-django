@@ -21,6 +21,7 @@ def pay_by_alipay(request):
     data = {'status': 400}
     request_params = getattr(request, request.method)
     form = PaymentForm(request_params)
+
     # signed_request = request_params.get('signed_request', '')
     # signed_request = signed_request.split('.')
     # if len(signed_request) == 2:
