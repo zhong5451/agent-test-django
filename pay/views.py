@@ -20,35 +20,43 @@ import urllib2
 def pay_by_alipay(request):
     data = {'status': 400}
     request_params = getattr(request, request.method)
-    signed_request = request_params.get('signed_request', '')
-    signed_request = signed_request.split('.')
-    if len(signed_request) == 2:
-        sign, pay_data = signed_request[0], signed_request[1]
-    else:
-        return json_response(data)
-    pay_data = decrypt(pay_data, settings.PRIVATE_KEY)
-    print pay_data
+    form = PaymentForm(request_params)
+    # signed_request = request_params.get('signed_request', '')
+    # signed_request = signed_request.split('.')
+    # if len(signed_request) == 2:
+    #     sign, pay_data = signed_request[0], signed_request[1]
+    # else:
+    #     return json_response(data)
+    # pay_data = decrypt(pay_data, settings.PRIVATE_KEY)
+    # print pay_data
 
-    pay_data = pay_data.split('&')
-    pay_data.sort()
-    pay_data = '&'.join(pay_data)
+    # pay_data = pay_data.split('&')
+    # pay_data.sort()
+    # pay_data = '&'.join(pay_data)
 
-    sign_cal = hashlib.md5('%s%s' % (pay_data.encode('utf-8'), settings.PRIVATE_KEY)).hexdigest()
-    print sign, sign_cal
-    #if sign_cal != sign:
-    #    return json_response(data)
-    params = Param('%s' % pay_data)
-    print params
+    # sign_cal = hashlib.md5('%s%s' % (pay_data.encode('utf-8'), settings.PRIVATE_KEY)).hexdigest()
+    # print sign, sign_cal
+    # #if sign_cal != sign:
+    # #    return json_response(data)
+    # params = Param('%s' % pay_data)
+    # print params
 
-    total_fee = params.get_param('total_fee')[0]
-    domain_buy = params.get_param('domain_buy')[0]
-    service = params.get_param('service')[0]
-    user_id = params.get_param('user_id')[0]
-    out_trade_no = params.get_param('out_trade_no')[0]
-    subject = params.get_param('subject')[0]
-    body = params.get_param('body')[0]
-    print body
+    # total_fee = params.get_param('total_fee')[0]
+    # domain_buy = params.get_param('domain_buy')[0]
+    # service = params.get_param('service')[0]
+    # user_id = params.get_param('user_id')[0]
+    # out_trade_no = params.get_param('out_trade_no')[0]
+    # subject = params.get_param('subject')[0]
+    # body = params.get_param('body')[0]
+    # print body
 
+    total_fee = form.cleaned_data.get('total_fee')
+    domain_buy = form.cleaned_data.get('domain_buy')
+    service = form.cleaned_data.get('service')
+    user_id = form.cleaned_data.get('user_id')
+    out_trade_no = form.cleaned_data.get('out_trade_no')
+    subject = form.cleaned_data.get('subject')
+    body = form.cleaned_data.get('body')
 
     # alipay form
     alipay_dict = {
