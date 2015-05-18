@@ -18,6 +18,7 @@ import urllib2
 
 
 def pay_by_alipay(request):
+    print 111
     data = {'status': 400}
     request_params = getattr(request, request.method)
     form = PaymentForm(request_params)
