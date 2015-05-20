@@ -54,13 +54,13 @@ def pay_by_alipay(request):
     body = params.get_param('body')[0]
     print body
 
-    total_fee = form.cleaned_data.get('total_fee')
-    domain_buy = form.cleaned_data.get('domain_buy')
-    service = form.cleaned_data.get('service')
-    user_id = form.cleaned_data.get('user_id')
-    out_trade_no = form.cleaned_data.get('out_trade_no')
-    subject = form.cleaned_data.get('subject')
-    body = form.cleaned_data.get('body')
+    # total_fee = form.cleaned_data.get('total_fee')
+    # domain_buy = form.cleaned_data.get('domain_buy')
+    # service = form.cleaned_data.get('service')
+    # user_id = form.cleaned_data.get('user_id')
+    # out_trade_no = form.cleaned_data.get('out_trade_no')
+    # subject = form.cleaned_data.get('subject')
+    # body = form.cleaned_data.get('body')
 
     # alipay form
     alipay_dict = {
