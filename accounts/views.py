@@ -51,8 +51,11 @@ def home(request):
     url = 'http://10.18.103.31:8888/api/home/agent-user-login/'
     url = '%s/api/home/agent-user-login/' % settings.IFRAME_CLOUD_URL
     client_ip = get_clientip(request)
-    params = "clientip=%s&email=%s&phone=%s&uid=%s&uname=%s" % (
-             client_ip, 'test@test.com', 13312341234,
+    # params = "clientip=%s&email=%s&phone=%s&uid=%s&uname=%s" % (
+    #          client_ip, 'test@test.com', 13312341234,
+    #          request.user.id, request.user.username)
+    params = "&email=%s&phone=%s&uid=%s&uname=%s" % (
+             'test@test.com', 13312341234,
              request.user.id, request.user.username)
     private_key = settings.PRIVATE_KEY
     sign = hashlib.md5('%s%s' % (params, private_key)).hexdigest()

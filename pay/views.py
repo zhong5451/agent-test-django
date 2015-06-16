@@ -97,11 +97,11 @@ def pay_by_alipay(request):
             # 'token': '',
             }
     alipay_form = AliPayDirectPayForm(auto_id=False, initial=alipay_dict)
-    data = get_form_data(alipay_form)
-    alipay_form['sign'].field.initial = make_sign(data)
-    data = get_form_data(alipay_form)
+    form_data = get_form_data(alipay_form)
+    alipay_form['sign'].field.initial = make_sign(form_data)
+    # data = get_form_data(alipay_form)
     request_url = alipay_form.get_action()
-    for key, value in data.items():
+    for key, value in form_data.items():
         if isinstance(value, unicode):
             v = value.encode(alipay_form.initial['_input_charset'])
         else:
